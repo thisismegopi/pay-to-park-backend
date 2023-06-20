@@ -4,18 +4,11 @@ import { DataSource } from 'typeorm';
 
 @Injectable()
 export class LifeCycleService implements OnApplicationBootstrap {
-  constructor(
-    private readonly datasource: DataSource,
-    private readonly config: ConfigService,
-  ) {}
+    constructor(private readonly datasource: DataSource, private readonly config: ConfigService) {}
 
-  async onApplicationBootstrap() {
-    await this.datasource.query(
-      `CREATE SCHEMA IF NOT EXISTS ${this.config.get<string>(
-        'database.schema',
-      )}`,
-    );
-    await this.datasource.runMigrations({ transaction: 'each' });
-    console.log('Migration completed!');
-  }
+    async onApplicationBootstrap() {
+        await this.datasource.query(`CREATE SCHEMA IF NOT EXISTS ${this.config.get<string>('database.schema')}`);
+        await this.datasource.runMigrations({ transaction: 'each' });
+        console.log('Migration completed!');
+    }
 }
