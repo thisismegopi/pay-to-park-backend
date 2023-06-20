@@ -3,7 +3,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { validate } from './validation/env.validation';
 import { AppConfig, DatabaseConfig } from './config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { LifeCycleService } from './lifecycle/lifecycle.service';
+import { LifeCycleService } from './services/lifecycle.service';
 
 @Module({
   imports: [
