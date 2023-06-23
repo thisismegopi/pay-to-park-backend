@@ -1,25 +1,9 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule, ConfigService } from '@nestjs/config';
-import { validate } from './validation/env.validation';
-import { AppConfig, DatabaseConfig } from './config';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { LifeCycleService } from './services/lifecycle.service';
+import { AppConfigModule } from './app/config/config.module';
+import { AppDataBaseModule } from './app/database/database.module';
+import { AppLifecycleModule } from './app/lifecycle/lifecycle.module';
 
 @Module({
-    imports: [
-        ConfigModule.forRoot({
-            validate,
-            isGlobal: true,
-            load: [AppConfig, DatabaseConfig],
-        }),
-        TypeOrmModule.forRootAsync({
-            imports: [ConfigModule],
-            useFactory: (configService: ConfigService) => ({
-                ...configService.get('database'),
-            }),
-            inject: [ConfigService],
-        }),
-    ],
-    providers: [LifeCycleService],
+    imports: [AppConfigModule, AppDataBaseModule, AppLifecycleModule],
 })
 export class AppModule {}

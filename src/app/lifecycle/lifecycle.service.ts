@@ -3,7 +3,7 @@ import { ConfigService } from '@nestjs/config';
 import { DataSource } from 'typeorm';
 
 @Injectable()
-export class LifeCycleService implements OnApplicationBootstrap {
+export class AppLifeCycleService implements OnApplicationBootstrap {
     constructor(private readonly datasource: DataSource, private readonly config: ConfigService) {}
 
     async onApplicationBootstrap() {

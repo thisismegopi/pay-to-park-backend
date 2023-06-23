@@ -11,8 +11,8 @@ export default new DataSource({
     url: process.env.DATABASE_URL,
     schema: process.env.DATABASE_SCHEMA,
     synchronize: false,
-    logging: configService.get('nodenv') === 'development',
-    entities: [`${__dirname}/../src/**/*.entity{.ts,.js}`],
+    logging: configService.get('ENV') === 'development',
+    entities: [`${__dirname}/../src/entities/*{.ts,.js}`],
     migrations: [`${__dirname}/migrations/*{.ts,.js}`],
     migrationsTableName: 'migrations',
 });
