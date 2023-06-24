@@ -14,4 +14,4 @@ import { ConfigService } from '@nestjs/config';
         }),
     ],
 })
-export class AppDataBaseModule {}
+export class AppDatabaseModule {}

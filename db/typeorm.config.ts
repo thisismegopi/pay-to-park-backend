@@ -12,7 +12,7 @@ export default new DataSource({
     schema: process.env.DATABASE_SCHEMA,
     synchronize: false,
     logging: configService.get('ENV') === 'development',
-    entities: [`${__dirname}/../src/entities/*{.ts,.js}`],
+    entities: [`${__dirname}/../src/**/*.entity{.ts,.js}`],
     migrations: [`${__dirname}/migrations/*{.ts,.js}`],
     migrationsTableName: 'migrations',
 });
